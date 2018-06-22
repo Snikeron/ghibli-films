@@ -1,0 +1,13 @@
+.App {
+  text-align: center;
+}
+
+.FilmsList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+}
+
+.navBar {
+  color: #fef;
+}
