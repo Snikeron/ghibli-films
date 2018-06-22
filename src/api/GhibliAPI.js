@@ -11,7 +11,9 @@ export default {
 async function fetchFilms() {
     const response = await axios.get('/films')
     const films = response.data
-    return films
+    const responsePoster = await axios.get('http://www.omdbapi.com/?apikey=57febbf5&t=only+yesterday&y=1991')
+    const posters = responsePoster.data
+    return {films, posters}
 }
 
 async function fetchPeople() {

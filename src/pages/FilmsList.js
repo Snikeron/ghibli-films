@@ -15,7 +15,8 @@ export default class FilmsList extends Component {
     GhibliAPI.fetchFilms()
       .then(films => {
         this.setState({
-          films
+          films: films.films,
+          poster: films.posters
         })
       })
       .catch(err => {
@@ -23,16 +24,46 @@ export default class FilmsList extends Component {
       })
   }
 
+ 
+  // async componentDidMount() {
+  //   const promise1 = fetch('info')
+  //   const promise2 = fetch('images')
+
+  //   const [info, images] = await Promise.all([promse1, promise2])
+
+  //   const films = info.map(i => {
+  //     if(i.name === image.name && by year) {
+  //       i.image_url = image.url
+  //       const film = {
+  //         ...i,
+  //         ...imgage
+  //       }
+  //       return film
+  //     }
+
+  //     return i
+  //   })
+
+  //   this.setState({
+  //     films: films
+  //   })
+
+  // }
+
   render() {
-    const { films } = this.state;
+    const { films, poster } = this.state;
+  
+    if (!films) {
+      return <h3>Fetching all the Ghibli Films ...</h3>
+    } else {
       
-    if (!films) return <h3>Fetching all the Ghibli Films ...</h3>
-      
+    }
+
     return (
       films.map( film => {
         return (
             <Card>
-              <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+              <CardImg top width="100%" src={poster.Poster} alt="Card image cap" />
               <CardBody>
               <CardSubtitle>- {film.release_date} -</CardSubtitle>
               <CardTitle>{film.title}</CardTitle>

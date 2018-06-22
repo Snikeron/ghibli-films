@@ -1,4 +1,5 @@
 import axios from 'axios';
+import FilmsList from '../pages/FilmsList';
 
 export default {
     fetchPoster,
