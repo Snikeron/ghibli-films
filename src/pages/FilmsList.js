@@ -1,26 +1,31 @@
 import React, { Component } from 'react';
 import './FilmsList.css';
 import GhibliAPI from '../api/GhibliAPI';
-import PosterAPI from '../api/PosterAPI';
 import { Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button } from 'reactstrap';
+    CardTitle, CardSubtitle } from 'reactstrap';
 
 export default class FilmsList extends Component {
   state = {
     films: null,
-    poster: '',
+    posters: null,
   }
 
   componentDidMount() {
     GhibliAPI.fetchFilms()
       .then(films => {
         this.setState({
-          films: films.films,
-          poster: films.posters
+          films: films
         })
+        return films;
       })
-      .catch(err => {
-        console.error(err)
+      .then(films => {
+        GhibliAPI.fetchPostersB(films)
+          .then(posters => {
+            this.setState({
+              posters: posters
+            })
+            return posters;
+          })
       })
   }
 
@@ -51,19 +56,23 @@ export default class FilmsList extends Component {
   // }
 
   render() {
-    const { films, poster } = this.state;
-  
+    const { films, posters } = this.state;
     if (!films) {
       return <h3>Fetching all the Ghibli Films ...</h3>
+    } else if (!posters) {
+      return <h3>Fetching poster images ...</h3>
     } else {
-      
-    }
+      return (
+        films.map( (film, index) => {
+          // console.log(this.state)
+          console.log(posters)
+          console.log(posters.length)
+          // console.log(posters[10])
 
-    return (
-      films.map( film => {
-        return (
-            <Card>
-              <CardImg top width="100%" src={poster.Poster} alt="Card image cap" />
+          return (
+            <Card key={index}>
+              <CardImg top width="100%" src={posters[index]} alt="Card image cap" />
+              {console.log(posters[index])}
               <CardBody>
               <CardSubtitle>- {film.release_date} -</CardSubtitle>
               <CardTitle>{film.title}</CardTitle>
@@ -72,9 +81,10 @@ export default class FilmsList extends Component {
               {/* <Button>Button</Button> */}
               </CardBody>
             </Card>
-          
-        )
-      })
+            
+          )
+        })
     )
+  }
   }
 }

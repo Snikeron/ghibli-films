@@ -2,6 +2,8 @@ import axios from './init';
 
 export default {
     fetchFilms,
+    fetchPosters,
+    fetchPostersB,
     fetchPeople,
     fetchLocations,
     fetchSpecies,
@@ -11,10 +13,39 @@ export default {
 async function fetchFilms() {
     const response = await axios.get('/films')
     const films = response.data
-    const responsePoster = await axios.get('http://www.omdbapi.com/?apikey=57febbf5&t=only+yesterday&y=1991')
-    const posters = responsePoster.data
-    return {films, posters}
+    return films
 }
+
+async function fetchPosters(films) {
+    let posters = []
+    await films.forEach(async (film, index) => {
+        const response = await axios.get(`http://www.omdbapi.com/?apikey=57febbf5&t=${film.title}&y=${film.release_date}`)
+        const poster = response.data.Poster
+        console.log(index)
+        posters.push(poster)
+    })
+    return posters
+}
+
+/////////////////////////////////
+// ASYNC forEach -- THIS WORKS!!
+/////////////////////////////////
+async function asyncForEach(films, fetch) {
+    for (let i=0; i<films.length; i++) {
+        await fetch(films[i], i, films)
+    }
+}
+
+async function fetchPostersB(films) {
+    let posters = []
+    await asyncForEach(films, async (film) => {
+        const response = await axios.get(`http://www.omdbapi.com/?apikey=57febbf5&t=${film.title}&y=${film.release_date}`)
+        const poster = response.data.Poster
+        posters.push(poster)
+    })
+    return posters
+}
+/////////////////////////////////
 
 async function fetchPeople() {
     const response = await axios.get('/people')
