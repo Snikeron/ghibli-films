@@ -16,16 +16,16 @@ async function fetchFilms() {
     return films
 }
 
-async function fetchPosters(films) {
-    let posters = []
-    await films.forEach(async (film, index) => {
-        const response = await axios.get(`https://cors-anywhere.herokuapp.com/https://www.omdbapi.com/?apikey=57febbf5&t=${film.title}&y=${film.release_date}`)
-        const poster = response.data.Poster
-        // console.log(index)
-        posters.push(poster)
-    })
-    return posters
-}
+// async function fetchPosters(films) {
+//     let posters = []
+//     await films.forEach(async (film, index) => {
+//         const response = await axios.get(`https://cors-anywhere.herokuapp.com/https://www.omdbapi.com/?apikey=57febbf5&t=${film.title}&y=${film.release_date}`)
+//         const poster = response.data.Poster
+//         // console.log(index)
+//         posters.push(poster)
+//     })
+//     return posters
+// }
 
 /////////////////////////////////
 // ASYNC forEach -- THIS WORKS!!
