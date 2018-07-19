@@ -34,16 +34,14 @@ class App extends Component {
     return (
       <div className="App container">
         <div>
-          <Navbar color="dark" light expand="md" className="navBar">
+          <Navbar color="info" light expand="md" className="navBar">
             <NavbarBrand href="/">Ghibli Films</NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
+                
                 <NavItem>
-                  <NavLink href="/components/">Components</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+                  <NavLink href="https://github.com/Snikeron/reactstrap">GitHub</NavLink>
                 </NavItem>
                 <UncontrolledDropdown nav inNavbar>
                   <DropdownToggle nav caret>

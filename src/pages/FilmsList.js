@@ -29,32 +29,6 @@ export default class FilmsList extends Component {
       })
   }
 
- 
-  // async componentDidMount() {
-  //   const promise1 = fetch('info')
-  //   const promise2 = fetch('images')
-
-  //   const [info, images] = await Promise.all([promse1, promise2])
-
-  //   const films = info.map(i => {
-  //     if(i.name === image.name && by year) {
-  //       i.image_url = image.url
-  //       const film = {
-  //         ...i,
-  //         ...imgage
-  //       }
-  //       return film
-  //     }
-
-  //     return i
-  //   })
-
-  //   this.setState({
-  //     films: films
-  //   })
-
-  // }
-
   render() {
     const { films, posters } = this.state;
     if (!films) {
@@ -65,8 +39,8 @@ export default class FilmsList extends Component {
       return (
         films.map( (film, index) => {
           // console.log(this.state)
-          console.log(posters)
-          console.log(posters.length)
+          // console.log(posters)
+          // console.log(posters.length)
           // console.log(posters[10])
 
           return (

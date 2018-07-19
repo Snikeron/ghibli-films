@@ -19,9 +19,9 @@ async function fetchFilms() {
 async function fetchPosters(films) {
     let posters = []
     await films.forEach(async (film, index) => {
-        const response = await axios.get(`http://www.omdbapi.com/?apikey=57febbf5&t=${film.title}&y=${film.release_date}`)
+        const response = await axios.get(`https://cors-anywhere.herokuapp.com/https://www.omdbapi.com/?apikey=57febbf5&t=${film.title}&y=${film.release_date}`)
         const poster = response.data.Poster
-        console.log(index)
+        // console.log(index)
         posters.push(poster)
     })
     return posters
@@ -39,7 +39,7 @@ async function asyncForEach(films, fetch) {
 async function fetchPostersB(films) {
     let posters = []
     await asyncForEach(films, async (film) => {
-        const response = await axios.get(`http://www.omdbapi.com/?apikey=57febbf5&t=${film.title}&y=${film.release_date}`)
+        const response = await axios.get(`https://cors-anywhere.herokuapp.com/https://www.omdbapi.com/?apikey=57febbf5&t=${film.title}&y=${film.release_date}`)
         const poster = response.data.Poster
         posters.push(poster)
     })

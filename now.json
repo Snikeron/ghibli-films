@@ -1,0 +1,6 @@
+{
+    "env": {
+        "REACT_APP_GHIBLI_API_URI": "https://ghibliapi.herokuapp.com",
+        "REACT_APP_OMDB_API_KEY": "57febbf5"
+    }
+}
